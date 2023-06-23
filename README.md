@@ -1,6 +1,6 @@
 # FIFO-Memory-using-Verilog
 
-This repository contains the Verilog code for a FIFO (First-In, First-Out) memory circuit. The FIFO memory is implemented using modules to manage the read and write operations, memory storage, and status signal calculation.
+This repository contains the Verilog code for a FIFO (First-In, First-Out) memory circuit with 8 bit data width and 16 stages. The FIFO memory is implemented using modules to manage the read and write operations, memory storage, and status signal calculation.
 
 ## Description
 The FIFO memory circuit is designed to store and retrieve data in the order they are written. It is commonly used in various applications where data buffering and sequencing are required, such as communication systems, data processing, and hardware accelerators.
@@ -39,11 +39,11 @@ The Top-level module 'fifo_mem' instantiates the submodules and connects their i
 ### 4. status_signal submodule:
 - Calculates the status flags of the FIFO.
 - Inputs: write, read, wr_enable, rd_enable, clk, rst_n, wptr, and rptr.
-- Outputs: is_full, is_empty, at_capacity, overflow, and underflow.
+- Outputs: is_full, is_empty, threshold, overflow, and underflow.
 - Uses combinational logic to determine the status flags based on the control signals and pointer values.
-- Calculates is_full by comparing the most significant bit of the write and read pointers.
-- Calculates is_empty by comparing the most significant bit of the write and read pointers and the equality of the lower bits.
-- Calculates at_capacity based on the result of the pointer subtraction.
+- Calculates is_full by comparing the most significant bit of the write and read pointers (diff_msb_diff_bank) and the equality of the lower bits.
+- Calculates is_empty by comparing the most significant bit of the write and read pointers (~diff_msb_diff_bank => same bank) and the equality of the lower bits.
+- Calculates threshold based on the result of the pointer subtraction.
 - Determines overflow and underflow based on the control signals and the read and write operations.
 
 ### Reference
