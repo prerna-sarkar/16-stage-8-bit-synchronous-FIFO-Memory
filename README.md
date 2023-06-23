@@ -1,4 +1,4 @@
-# FIFO-Memory-using-Verilog
+# 16-stage-8-bit-synchronous-FIFO-Memory
 
 This repository contains the Verilog code for a FIFO (First-In, First-Out) memory circuit with 8 bit data width and 16 stages. The FIFO memory is implemented using modules to manage the read and write operations, memory storage, and status signal calculation.
 
