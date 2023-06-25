@@ -65,11 +65,11 @@ Overall, the code sets up the testbench environment, generates clock and reset s
 5. The main task is called using the initial keyword, which starts a simulation.
 
 6. The main task uses a fork-join construct to run several tasks concurrently:
-(i) clock_generator: Generates a clock signal with a period of DELAY (10 picoseconds) using an infinite loop.
-(ii) reset_generator: Generates a reset signal (rst_n) with a specific timing sequence.
-(iii) operation_process: Performs write and read operations on the FIFO memory module in a loop.
-(iv) debug_fifo: Displays simulation information and monitors the values of write, read, and data_in.
-(v) endsimulation: Specifies the end time of the simulation using the ENDTIME parameter and displays a simulation finish message.
+- clock_generator: Generates a clock signal with a period of DELAY (10 picoseconds) using an infinite loop.
+- reset_generator: Generates a reset signal (rst_n) with a specific timing sequence.
+- operation_process: Performs a sequence of write and read operations on the FIFO memory module. It simulates writing data into the memory for 17 iterations, with specific delays between each write. After that, it simulates reading data from the memory for another 17 iterations, with specific delays between each read. 
+- debug_fifo: Displays simulation information and monitors the values of write, read, and data_in.
+- endsimulation: Specifies the end time of the simulation using the ENDTIME parameter and displays a simulation finish message.
 
 7. The self-checking part of the code implements the functionality of the FIFO memory module. It uses an always block triggered by the positive edge of the clock (posedge clk) and two registers, waddr for the write address and raddr for the read address.
 
@@ -83,6 +83,4 @@ Overall, the code sets up the testbench environment, generates clock and reset s
  - If they match, a pass message is displayed.
  - If the read address reaches 16, the simulation finishes.
  - If they don't match, a fail message is displayed, and the simulation finishes.
-
-
 
