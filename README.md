@@ -49,6 +49,40 @@ The Top-level module 'fifo_mem' instantiates the submodules and connects their i
 ### Reference
 ![image](https://github.com/prerna-sarkar/FIFO-Memory-using-Verilog/assets/40262089/7a4d246b-dcd8-4554-9b13-e9a9cdc4fc0e)
 
+## TestBench
+
+The code defines a Verilog testbench for a FIFO (First-In-First-Out) memory module.
+Overall, the code sets up the testbench environment, generates clock and reset signals, performs write and read operations on the FIFO memory module, and includes self-checking mechanisms to validate the functionality of the module.
+
+1. It begins with a timescale directive that sets the time units to 10 picoseconds and the time precision to 10 picoseconds. The DELAY macro is defined using the preprocessor directive and it has a value of 10.
+
+2. The DUT input registers (clk, rst_n, write, read, data_in) and output wires (data_out, is_full, is_empty, threshold, overflow, underflow) are declared, along with an integer variable i.
+
+3. An instance of the FIFO memory module named tb1 is instantiated, connecting the inputs and outputs.
+
+4. Initial conditions are set for the input registers.
+
+5. The main task is called using the initial keyword, which starts a simulation.
+
+6. The main task uses a fork-join construct to run several tasks concurrently:
+(i) clock_generator: Generates a clock signal with a period of DELAY (10 picoseconds) using an infinite loop.
+(ii) reset_generator: Generates a reset signal (rst_n) with a specific timing sequence.
+(iii) operation_process: Performs write and read operations on the FIFO memory module in a loop.
+(iv) debug_fifo: Displays simulation information and monitors the values of write, read, and data_in.
+(v) endsimulation: Specifies the end time of the simulation using the ENDTIME parameter and displays a simulation finish message.
+
+7. The self-checking part of the code implements the functionality of the FIFO memory module. It uses an always block triggered by the positive edge of the clock (posedge clk) and two registers, waddr for the write address and raddr for the read address.
+
+ - If the reset signal is low, the write address is set to 0.
+ - When the write signal is high, data is written to the memory at the current write address, and the write address is incremented.
+ - The $display function is used to print the simulation time, the value of data_out, and the value in memory at the write address.
+
+ - If the reset signal is low, the read address is set to 0.
+ - When the read signal is high and the FIFO is not empty, the read address is incremented.
+ - If the read signal is high and the FIFO is not empty, it checks if the value read from memory matches data_out.
+ - If they match, a pass message is displayed.
+ - If the read address reaches 16, the simulation finishes.
+ - If they don't match, a fail message is displayed, and the simulation finishes.
 
 
 
