@@ -49,7 +49,7 @@ The Top-level module 'fifo_mem' instantiates the submodules and connects their i
 ### Reference
 ![image](https://github.com/prerna-sarkar/FIFO-Memory-using-Verilog/assets/40262089/7a4d246b-dcd8-4554-9b13-e9a9cdc4fc0e)
 
-## TestBench
+# TestBench
 
 The code defines a Verilog testbench for a FIFO (First-In-First-Out) memory module.
 Overall, the code sets up the testbench environment, generates clock and reset signals, performs write and read operations on the FIFO memory module, and includes self-checking mechanisms to validate the functionality of the module.
