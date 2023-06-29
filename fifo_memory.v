@@ -3,6 +3,7 @@ Author: Prerna Sarkar
 Date last modified: 06/23/2023
 Description: 16 stage FIFO memory implementation in Verilog (8-bit data)
 */
+`timescale     10 ps/ 10 ps  
 
 module fifo_mem(data_out, is_full, is_empty, threshold, overflow, underflow, clk, rst_n, write, read, data_in);  
   
